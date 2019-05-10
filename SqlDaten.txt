@@ -1,0 +1,116 @@
+﻿ /*Tabellen werden nur einmail angelegt und geführt*/
+  
+/*
+DROP TABLE telefon
+DROP TABLE kunden
+DROP TABLE users
+DROP TABLE  bestellungen
+*/
+
+CREATE TABLE kunden
+(
+knr int not null PRIMARY KEY,
+kartnr int not null,
+nachname char(50) not null,
+vorname varchar(50) not null,
+geburtsname varchar(50) not null,
+geburtsdatum varchar(10) not null,
+geschlecht varchar(10) not null,
+email char(50) not null,
+strasse char(50) not null,
+hausnr  char(5) not null,
+plz char(5) not null,
+wohnort char(50) not null,
+wohnland char(50) not null
+)
+
+CREATE TABLE telefon
+(
+nr int not null primary key,
+knr int not null,
+telefonnr char(50),
+foreign key (knr) references kunden (knr)
+)
+
+CREATE TABLE users
+(
+usernr int not null PRIMARY KEY,
+nachname char(50) not null,
+vorname varchar(50) not null,
+geburtsname varchar(50) not null,
+geburtsdatum varchar(10) not null,
+benutzername varchar(50) not null,
+passwort char(50) not null
+)
+
+CREATE TABLE bestellungen
+(
+bnr int not null PRIMARY KEY,
+knr int not null,
+bestelldatum date not null,
+gesamtsum numeric(10,2) 
+)
+
+
+CREATE TABLE produkten
+(
+pid int not null PRIMARY KEY,
+kategorie char(50),
+titel char(50),
+darsteller char(50),
+regisseur char(50),
+preis numeric(10,2) ,
+studio char(50),
+bemerkung char(50)
+)
+
+
+insert into kunden values (1,100,'Meier','Hilde','Drogo','12031976', '','hilde.meier@gmx.com','Hausburgstr.','24','10245','Berlin','Deutschland')
+insert into kunden values (2,100,'Richter','Peter','','31051989','','peterrichter@yahoo.de','Alsterchausse','77','22055','Hamburg','Deutschland')
+
+insert into kunden values (3,200,'Rossmann GmbH','','','','','service@rossmann.de','Bergstraße','5','81539 ','Muenchen','Deutschland')
+insert into kunden values (4,200,'Metzgerei Reichmann','','','','','M45Reichmann@hotmail.com','Längental','2A','78083','Dauchingen','Deutschland')
+
+
+insert into telefon values (1,1,'030785768900')
+insert into telefon values (2,1,'016975656789')
+insert into telefon values (3,2,'049068890909')
+
+insert into users values (1,'Fargeon','Joceline','Avomo Ngomo','17021988','joFarg','abc')
+insert into users values (2,'Mais','Angel','','30091976','anmais','abc')
+
+insert into bestellungen values (1,1,'2017-08-09',178.45)
+insert into bestellungen values (2,2,'29/08/2010',200)
+
+insert into produkten (pid,titel,preis ) values (1,'Avatar',10.45)
+insert into produkten (pid,titel,preis ) values (2,'Der Pate I',5.99)
+
+
+SELECT *  from produkten
+SELECT *  from bestellungen
+
+SELECT 
+knr ,
+nachname ,
+vorname ,
+geburtsname ,
+geburtsdatum ,
+geschlecht,
+email ,
+strasse ,
+hausnr,  
+plz ,
+wohnort, 
+wohnland 
+
+ from kunden as k
+
+SELECT 
+ nr ,
+knr,
+telefonnr
+
+FROM  telefon
+
+
+
